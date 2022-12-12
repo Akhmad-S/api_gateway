@@ -29,7 +29,7 @@ func (h Handler) CreateArticle(c *gin.Context) {
 		return
 	}
 
-	article, err := h.grpcClients.Article.CreateArticle(c.Request.Context(), &blogpost.CreateArticleRequest{
+	article, err := h.GrpcClients.Article.CreateArticle(c.Request.Context(), &blogpost.CreateArticleRequest{
 		AuthorId: body.AuthorId,
 		Content: &blogpost.Content{
 			Title: body.Content.Title,
@@ -62,7 +62,7 @@ func (h Handler) CreateArticle(c *gin.Context) {
 func (h Handler) GetArticleById(c *gin.Context) {
 	id := c.Param("id")
 
-	article, err := h.grpcClients.Article.GetArticleById(c.Request.Context(), &blogpost.GetArticleByIdRequest{
+	article, err := h.GrpcClients.Article.GetArticleById(c.Request.Context(), &blogpost.GetArticleByIdRequest{
 		Id: id,
 	})
 	if err != nil {
@@ -112,7 +112,7 @@ func (h Handler) GetArticleList(c *gin.Context) {
 		return
 	}
 
-	articleList, err := h.grpcClients.Article.GetArticleList(c.Request.Context(), &blogpost.GetArticleListRequest{
+	articleList, err := h.GrpcClients.Article.GetArticleList(c.Request.Context(), &blogpost.GetArticleListRequest{
 		Offset: int32(offset),
 		Limit: int32(limit),
 		Search: searchStr,
@@ -148,7 +148,7 @@ func (h Handler) UpdateArticle(c *gin.Context) {
 		return
 	}
 
-	article, err := h.grpcClients.Article.UpdateArticle(c.Request.Context(), &blogpost.UpdateArticleRequest{
+	article, err := h.GrpcClients.Article.UpdateArticle(c.Request.Context(), &blogpost.UpdateArticleRequest{
 		Id: body.Id,
 		Content: &blogpost.Content{
 			Title: body.Content.Title,
@@ -181,7 +181,7 @@ func (h Handler) UpdateArticle(c *gin.Context) {
 func (h Handler) DeleteArticle(c *gin.Context) {
 	id := c.Param("id")
 
-	article, err := h.grpcClients.Article.DeleteArticle(c.Request.Context(), &blogpost.DeleteArticleRequest{
+	article, err := h.GrpcClients.Article.DeleteArticle(c.Request.Context(), &blogpost.DeleteArticleRequest{
 		Id: id,
 	})
 	if err != nil {

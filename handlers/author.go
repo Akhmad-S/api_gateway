@@ -28,7 +28,7 @@ func (h Handler) CreateAuthor(c *gin.Context) {
 		return
 	}
 
-	author, err := h.grpcClients.Author.CreateAuthor(c.Request.Context(), &blogpost.CreateAuthorRequest{
+	author, err := h.GrpcClients.Author.CreateAuthor(c.Request.Context(), &blogpost.CreateAuthorRequest{
 		Fullname: body.Fullname,
 	})
 	if err != nil {
@@ -57,7 +57,7 @@ func (h Handler) CreateAuthor(c *gin.Context) {
 func (h Handler) GetAuthorById(c *gin.Context) {
 	id := c.Param("id")
 
-	author, err := h.grpcClients.Author.GetAuthorById(c.Request.Context(), &blogpost.GetAuthorByIdRequest{
+	author, err := h.GrpcClients.Author.GetAuthorById(c.Request.Context(), &blogpost.GetAuthorByIdRequest{
 		Id: id,
 	})
 	if err != nil {
@@ -107,7 +107,7 @@ func (h Handler) GetAuthorList(c *gin.Context) {
 		return
 	}
 
-	authorList, err := h.grpcClients.Author.GetAuthorList(c.Request.Context(), &blogpost.GetAuthorListRequest{
+	authorList, err := h.GrpcClients.Author.GetAuthorList(c.Request.Context(), &blogpost.GetAuthorListRequest{
 		Offset: int32(offset),
 		Limit: int32(limit),
 		Search: searchStr,
@@ -143,7 +143,7 @@ func (h Handler) UpdateAuthor(c *gin.Context) {
 		return
 	}
 
-	author, err := h.grpcClients.Author.UpdateAuthor(c.Request.Context(), &blogpost.UpdateAuthorRequest{
+	author, err := h.GrpcClients.Author.UpdateAuthor(c.Request.Context(), &blogpost.UpdateAuthorRequest{
 		Id: body.Id,
 		Fullname: body.Fullname,
 	})
@@ -173,7 +173,7 @@ func (h Handler) UpdateAuthor(c *gin.Context) {
 func (h Handler) DeleteAuthor(c *gin.Context) {
 	id := c.Param("id")
 
-	author, err := h.grpcClients.Author.DeleteAuthor(c.Request.Context(), &blogpost.DeleteAuthorRequest{
+	author, err := h.GrpcClients.Author.DeleteAuthor(c.Request.Context(), &blogpost.DeleteAuthorRequest{
 		Id: id,
 	})
 	if err != nil {
